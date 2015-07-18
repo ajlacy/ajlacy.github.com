@@ -27,6 +27,7 @@
             nav {
                 background: rgb(239, 80, 41);
                 margin: 0 auto;
+                margin-bottom: 20px;
                 display: flex;
                 padding: 10px;
             }
@@ -56,22 +57,25 @@
             
             .content {
                 flex: 1;
-                padding: 15px;
+                padding: 10px;
             }
             .sidebar {
-                margin-right: 25px;
-                padding: 10px;
+                margin-right: 20px;
+                padding: 15px;
             }
             .sidebar img {
                 width: 300px;
             }
-            .content {
-                flex: 1;
+            .interests {
+                margin-right: 20px;
                 padding: 15px;
             }
             .interests header {
                 font-size: 1.25em;
             }
+           .interests li {
+               padding: 5px;
+           }
       /* portfolio styles */
             #portfolio {
                 list-style-type: none;
