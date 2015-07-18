@@ -8,11 +8,6 @@
     <body>
          <div id="all-contents"> 
             <nav>
-                <header>Ashley's Website</header>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                </ul>
             </nav>
 
             <main>
@@ -36,5 +31,14 @@
                </div>
             </main>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(initialize);
+            
+            function initialize() {
+                
+                $("nav").load("nav.html");
+            }
+        </script>
     </body>
 </html>
