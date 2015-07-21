@@ -7,38 +7,31 @@
 
     <body>
          <div id="all-contents"> 
-            <nav>
-            </nav>
-
-            <main>
-                <div class="sidebar">
-                    <img src="images/photo.JPG"></img>
-                </div>
-
-                <div class="content">
-                
-                <h1>Ashley Lacy</h1>
-                <p>Project Manager at LookFar</p>
-                
-                <section class="interests">
-                    <header>Interests</header>
-                    <ul>
-                        <li>My Dogs, Harper and Boomer</li>
-                        <li>Japanese Pens</li>
-                        <li>DIY Project</li>
-                    </ul>
-                </section>
-               </div>
-            </main>
-        </div>
+            <nav></nav>
+            <main></main>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script>
-            $(document).ready(initialize);
-            
-            function initialize() {
-                
-                $("nav").load("nav.html");
-            }
+       <script>
+       $(document).ready(initialize);
+       
+       $(window).on('hashchange', function(){
+           loadTemplate(location.hash.slice(1));
+       });
+       
+       function initialize() {
+           var hash; 
+           $("nav").load("nav.html");
+           
+           hash = window.location.hash;
+           var template = window.location.hash.replace("#", "");
+           if (template === "") {
+               template = "home";
+           }
+           loadTemplate(template);
+       }
+       
+       function loadTemplate(template) {
+           $("main").load(template + '.html');
+       }
         </script>
     </body>
 </html>
