@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Ashley's Website</title>
-       <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
 
-    <body>
-         <div id="all-contents"> 
-            <nav></nav>
-            <main></main>
+<head>
+    <title>Ashley's Website</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div id="all-contents">
+        <nav></nav>
+        <main></main>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-       <script>
-       $(document).ready(initialize);
-       
-       $(window).on('hashchange', function(){
-           loadTemplate(location.hash.slice(1));
-       });
-       
-       function initialize() {
-           var hash; 
-           $("nav").load("nav.html");
-           
-           hash = window.location.hash;
-           var template = window.location.hash.replace("#", "");
-           if (template === "") {
-               template = "home";
-           }
-           loadTemplate(template);
-       }
-       
-       function loadTemplate(template) {
-           $("main").load(template + '.html');
-       }
+        <script>
+            $(document).ready(initialize);
+
+            $(window).on('hashchange', function() {
+                loadTemplate(location.hash.slice(1));
+            });
+
+            function initialize() {
+                var template;
+                
+                $("nav").load("nav.html");
+
+                template = window.location.hash.replace("#", "");
+                if (template === "") {
+                    template = "home";
+                }
+                loadTemplate(template);
+            }
+
+            function loadTemplate(template) {
+                $("main").load(template + '.html');
+            }
         </script>
-    </body>
+</body>
+
 </html>
