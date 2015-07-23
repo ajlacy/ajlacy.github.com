@@ -56,7 +56,7 @@ console.log(animals);
 //Create a variable called quackers and assign to it the following object: { species: 'duck', tagline: 'Afflack', noises: ['quack', 'honk', 'sneeze', 'growl'] }
 var quackers ={species: 'duck', tagline: 'Afflack', noises: ['quack', 'honk', 'sneeze', 'growl']};
 //Add quackers to the animal array using a different method than before.
-animals[0] = "quackers"
+animals[0] = quackers;
 console.log(animals);
 //Create two more animal objects with these properties and values you create:
 var slithers ={species: 'snake', tagline: 'I talk to Harry Potter', noises: ['hiss', 'slither', 'slide', 'zzz']};
@@ -116,12 +116,3 @@ for(var i = 0; i < animals.length; i++) {
 
 console.log(animals);
 
-//1a: Log the Animal Personal Data
-//Choose which animal you want for your profile page, select it from your animals collection and save it in a variable called profileAnimal.
-profileAnimal
-
-//Loop through the properties of the animal, console.log the property name and if the property value is a string, also print that out. If the value is not a string, then just put a placeholder value of 'click here for data' (not actually a link)
-//'species: dog, tagline: who let the dogs out?, noises: click here for more data, relationships: click here for more data' etc
-
-//Adjust the previous loop so that it will loop through the noises array and print it out like this:
-//'species: dog, tagline: who let the dogs out?, noises: woof bark slurp , relationships: click here for more data'
