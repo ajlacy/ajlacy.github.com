@@ -63,5 +63,65 @@ var slithers ={species: 'snake', tagline: 'I talk to Harry Potter', noises: ['hi
 var flyers ={species: 'bird', tagline: 'Big Bird', noises: ['cherp', 'tweet', 'cluck', 'peck']};
 var growlers ={species: 'bear', tagline: 'I like honey', noises: ['grrrr', 'growl', 'zzz', 'hmmmm']};
 animals.push(slithers, flyers, growlers);
+
 console.log(animals);
 console.log(animals.length);
+
+// Section three
+//Choose a data structure for the list of friends.
+
+// Justify your decision.
+
+//Create a variable called friends and assign it to the empty data structure
+var friends = [];
+
+//Using your animals array, add two species to the friends data structure.
+//ensure that you are just putting the species name, not the entire object
+//be carefol not to use a destructive method like pop() that will remove the whole value from the animals array.
+//Inspect your friends data structure. What does it look like?
+friends.push(animals[1].species);
+friends.push(animals[2].species);
+console.log(friends);
+
+//relationships
+//Create a variable called relationships assign it to an empty object.
+var relationships = {};
+
+//Add your friends data structure to the relationships object.
+relationships.friends = friends;
+
+//Inspect your object. What is it's length?
+console.log(relationships);
+console.log(relationships.friends.length);
+
+//Create a variable called matches and assign it to an empty array.
+var matches = [];
+
+//Add the matches array to the relationships object. It shoold look like this: relationships = { friends: ['duck', 'camel'], matches: []}
+relationships.matches = matches;
+console.log(relationships);
+
+//Using the relationships object, add some species to the matches array, hint: the mathes array is now nested inside the relationships object!
+relationships.matches.push("quackers", "growlers");
+
+//Inspect your object. Is the matches array now popolated with some lucky species?
+console.log(relationships);
+
+//Loop through your animals collection, adding the relationships object to each animal. Name the property relationships.
+//Note: it is ok that these are all the same relationship object.
+
+for(var i = 0; i < animals.length; i++) {
+    animals[i].relationships = relationships;
+}
+
+console.log(animals);
+
+//1a: Log the Animal Personal Data
+//Choose which animal you want for your profile page, select it from your animals collection and save it in a variable called profileAnimal.
+profileAnimal
+
+//Loop through the properties of the animal, console.log the property name and if the property value is a string, also print that out. If the value is not a string, then just put a placeholder value of 'click here for data' (not actually a link)
+//'species: dog, tagline: who let the dogs out?, noises: click here for more data, relationships: click here for more data' etc
+
+//Adjust the previous loop so that it will loop through the noises array and print it out like this:
+//'species: dog, tagline: who let the dogs out?, noises: woof bark slurp , relationships: click here for more data'
