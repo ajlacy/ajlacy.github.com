@@ -9,11 +9,11 @@ console.log(profileAnimal);
 //Loop through the properties of the animal, console.log the property name and if the property value is a string, also print that out. If the value is not a string, then just put a placeholder value of 'click here for data' (not actually a link)
 //'species: dog, tagline: who let the dogs out?, noises: click here for more data, relationships: click here for more data' etc
 for(var key in profileAnimal) {
-     if(Array.isArray(profileAnimal[key])) {
-         console.log(key + ": " + profileAnimal[key]);
-     } else if (typeof profileAnimal[key] === "string"){
-         console.log(key + ": " + profileAnimal[key]);
-         
+  console.log('key: ' + key);
+  if (typeof profileAnimal[key] === 'string') {
+   console.log(profileAnimal[key]);
+     } else if (Array.isArray(profileAnimal[key])) {
+         console.log(profileAnimal[key].join('.'));
      }else {
          console.log(key +  ": " + "Click here for data");
      }
