@@ -3,7 +3,7 @@
 
 
 $.getJSON("data/animals.json", function(data) {
-        console.log(data);
+        
 
         var animal;
 
@@ -11,6 +11,8 @@ $.getJSON("data/animals.json", function(data) {
         //example output: "species tagline noises"
 
         function objKeyPrinter(obj) {
+            return Object.keys(obj).join(" ");
             
         }    
+        console.log(objKeyPrinter(data[0]));
 });
