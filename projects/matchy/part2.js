@@ -31,23 +31,49 @@ for(var key in profileAnimal) {
 
 //How woold you delete a friend from your friendslist? Implement it!
 
-var relationships = {animals: matches
+var relationships = profileAnimal.relationships;
+var friends = relationships.friends;
+console.log('friends: ');
+for (var i = 0; i < friends.length; i++) {
+ console.log(friends[i]);
 }
 
+var matches = relationships.matches;
+console.log('matches: ');
+for (var i = 0; i < matches.length; i++){
+ console.log(matches[i]);
+}
 
-function each(collection, action) {
- if (Array.isArray(collection)) {
-  for (var i = 0; i < collection.length; i++){
-   action(collection[i]);
-  }
- } else {
-   for (var key in collection) {
-     action(collection[key]);
-   }
+function deleteFriend(friend, friends) {
+ var index = friends.indexOf(friend);
+ if (index > -1) {
+  return friends.splice(index, 1)[0];
  }
 }
-console.log(profileAnimal.relationships.friends);
-console.log(profileAnimal.relatioships.matches);
 
-profileAnimal.relationships.friends.splice(0, 1);
-console.log(profileAnimal.relationships.friends);
+console.log('deleting a friend');
+
+console.log (deleteFriend('dog', friends));
+
+
+for (var j = 0; j < animals.length; j++) {
+ var animal = animals[j];
+ console.log(j + '.' + animals.species +  )
+}
+
+// function each(collection, action) {
+//  if (Array.isArray(collection)) {
+//   for (var i = 0; i < collection.length; i++){
+//    action(collection[i]);
+//   }
+//  } else {
+//    for (var key in collection) {
+//      action(collection[key]);
+//    }
+//  }
+// }
+// console.log(profileAnimal.relationships.friends);
+// console.log(profileAnimal.relatioships.matches);
+
+// profileAnimal.relationships.friends.splice(0, 1);
+// console.log(profileAnimal.relationships.friends);
