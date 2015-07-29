@@ -38,11 +38,11 @@ var joined = [];
 
 function arrValuePrinter(collection) {
    if (Array.isArray(collection)) {
-       joined = joined.push(collection);
+       return collection.join(" ");
    } else {
        for (var key in collection) {
            if (Array.isArray(collection[key])) {
-            return collection[key];
+            return collection[key].join(" ");
        }
    }
 } 
