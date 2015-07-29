@@ -49,6 +49,23 @@ function arrValuePrinter(collection) {
     return joined.join(" ");
 }
 console.log(arrValuePrinter(data[0]));  
+
+
+//dataTypeChecker takes either an array or an object and returns either 'array' or 'object' as appropriate.
+//example input: ['quack', 'honk', 'sneeze', 'growl']
+//example output: "array"
+//example input: {}
+//example output: "object"
+
+function dataTypeChecker (collection) {
+    if (Array.isArray(collection)) {
+        return "array";
+    } else {
+        return 'object';
+    }
+    
+    console.log(dataTypeChecker(data[2]));
+}
   
 });
 
