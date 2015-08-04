@@ -1,126 +1,114 @@
 //Use this file to implement Part One of your project
 
+$.getJSON("data/animals.json", function (data) {
 
+        var animal = data[1];
+        /*
+         * example input: { species: 'duck', tagline: 'Afflac', noises: ['quack', 'honk', 'sneeze', 'growl'] }
+         * example output: "species tagline noises"
+         */
+        function objKeyPrinter(obj) {
+            return Object.keys(obj).join(" ");
+        }
+        console.log(objKeyPrinter(data[0]));
 
-$.getJSON("data/animals.json", function(data) {
+        function strCapitalizer(str) {
+            return str.split(" ")
+                .map(firstToUpper)
+                .join(" ");
+        }
+        console.log(strCapitalizer(animal.tagline));
 
-
-    var animal;
-
-    //example input: { species: 'duck', tagline: 'Afflac', noises: ['quack', 'honk', 'sneeze', 'growl'] }
-    //example output: "species tagline noises"
-
-    function objKeyPrinter(obj) {
-        return Object.keys(obj).join(" "); //.keys returns an array
-
-    }
-    console.log(objKeyPrinter(data[0]));
-    //objValuePrinter loops through all the properties in a given object and returns a string of all the values that are strings.
-    //example input: { species: 'duck', tagline: 'Afflac', noises: ['quack', 'honk', 'sneeze', 'growl'] }
-    //example output: "duck Afflac"
-
-    function objValuePrinter(obj) {
-        var strings = [];
-        for (var key in obj) {
-            if (typeof(obj[key]) === "string") {
-                strings.push(obj[key]);
+        function extend(copyTo, copyFrom) {
+            for (var key in copyFrom) {
+                copyTo[key] = copyFrom[key];
             }
         }
-        return strings.join(" "); //.join joins all element of an array into a string
-    }
-    console.log(objValuePrinter(data[2]));
+        extend(animal, {
+            life: 100,
+            age: 10
+        });
+        console.log(animal);
 
-    //arrValuePrinter takes a given array and returns the values as a string
-    //example input: ['quack', 'honk', 'sneeze', 'growl']
-    //example output: "quack honk sneeze growl"
-
-    var joined = [];
-
-    function arrValuePrinter(collection) {
-        if (Array.isArray(collection)) {
-            return collection.join(" ");
+        function relationshipLogger(animal) {
+            return animal.relationships || 'You have no relationships :(';
         }
-        else {
-            for (var key in collection) {
-                if (Array.isArray(collection[key])) {
-                    return collection[key].join(" ");
+        console.log(relationshipLogger(animal));
+        console.log(relationshipLogger({}));
+
+        function correlation(species, animal) {
+            var correlation = '';
+            var relationships = animal.relationships;
+            if (relationships.friends.indexOf(species) > -1) {
+                correlation += species + ' is a friend of ' + animal.species;
+            }
+            if (relationships.matches.indexOf(species) > -1) {
+                correlation += correlation === '' ? '' : ' and ';
+                correlation += species + ' is a match of ' + animal.species;
+            }
+            if (correlation === '') {
+                correlation += species + ' has no relationship with ' + animal.species;
+            }
+            return correlation;
+        }
+        animal.relationships.matches.push('dog');
+        console.log(correlation('dog', animal));
+
+
+        function addFriend(friend, animal) {
+            animal.relationships.friends.push(friend);
+        }
+        addFriend('rabbit', animal);
+        console.log(animal);
+
+        var count = 0;
+        function search(collection, query) {
+            count++;
+            var matches = [];
+            _.each(collection, function (value) {
+                if (isComplex(value)) {
+                    if (search(value, query).length) {
+                        // if (!_.contains(matches, value)) {
+                        //     matches.push(value);
+                        // }
+                         matches.push(value);
+                    }
+                } else {
+                    if (typeof value === 'string' && typeof query === 'string') {
+                        if (value.toUpperCase().indexOf(query.toUpperCase()) > -1) {
+                            // if (!_.contains(matches, value)) {
+                            //     matches.push(value);
+                            // }
+                             matches.push(value);
+                        }
+                    } else {
+                        if (value === query) {
+                            // if (!_.contains(matches, value)) {
+                            //     matches.push(value);
+                            // }
+                            matches.push(value);
+                        }
+                    }
                 }
-            }
+            });
+            return matches;
         }
-        return joined.join(" ");
-    }
-    console.log(arrValuePrinter(data[0]));
+        console.log(search(data, 'snake'));
+        console.log('search was called ', count, 'times');
+
+        //console.log(isComplex(true));
+    })
+    .fail(function (e) {
+        console.log("Yer JSON maybe malformed!");
+    });
 
 
-    //dataTypeChecker takes either an array or an object and returns either 'array' or 'object' as appropriate.
-    //example input: ['quack', 'honk', 'sneeze', 'growl']
-    //example output: "array"
-    //example input: {}
-    //example output: "object"
-
-    function dataTypeChecker(collection) {
-        if (Array.isArray(collection)) {
-            return "array";
-        }
-        else {
-            return 'object';
-        }
-
-        console.log(dataTypeChecker(data[2]));
-    }
-
-    // capitalizeVals takes an object, capitalizes the first letter of each string value in the object, and returns the object. Ignore any non-string values like arrays, numbers or objects.
-    // example input: { species: 'duck', tagline: 'Afflac', noises: ['quack', 'honk', 'sneeze', 'growl'] }
-    // example output: { species: 'Duck', tagline: 'Afflac', noises: ['quack', 'honk', 'sneeze', 'growl'] }
-
-    function capitalizeVals(obj) {
-        for (var key in obj) {
-            if (typeof(obj[key]) === 'string') {
-                obj[key] = (obj[key].substring(0, 1).toUpperCase() + obj[key].substring(1));
-            }
-        }
-        return obj;
-    }
-    console.log(capitalizeVals(data[0]));
-
-    // strCapitalizer takes a string, capitalizes the first letter of each word, and returns the string.
-    // example input: "my name is bristol"
-    // example output: "My Name Is Bristol"
-
-    function strCapitalizer(str) {
-        var strCap = str.split(" ");
-        for (var i = 0; i < strCap.length; i++) {
-            strCap[i] = strCap[i].substring(0,1).toUpperCase() + strCap[i].substring(1);
-        }
-        return strCap.join(" ");
-    }
-    console.log(strCapitalizer("i have a big dog!"));
-
-//unique takes an array, removes any duplicate values and returns the array.
-// input: [1,2,3,3,4]
-// output: [1,2,3,4]
-
-
-
-function unique(collection) { 
-    var parsed = [];
-    if(Array.isArray(collection)) {
-        for (var i = 0; i < collection.length; i++) {
-            if (parsed.indexOf(collection[i]) === -1)  {
-                parsed.push(collection[i]);
-            }
-        }
-    }
-    return parsed;
+function firstToUpper(string) {
+    return string[0].toUpperCase() + string.slice(1);
 }
 
-console.log(unique([1, 2, 2, 3, 4, 5, 5]));
-
-//extend takes two objects and copies the properties of the first object on to the second. It does not return anything.
-
-function extend (obj, obj2) {
-    return Object.key(obj)
+function isComplex(value) {
+    if (value !== null && typeof value === "object") return true;
+    if (Array.isArray(value)) return true;
+    return false;
 }
-
-console.log(data[0]);
-});
