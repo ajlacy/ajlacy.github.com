@@ -32,7 +32,6 @@ $(function () {
     function getData(className) {
         var output = [];
         var $listItems = $(className);
-        console.log($listItems);
         $listItems.each(function (key) {
             output.push($listItems[key].innerHTML);
         });
@@ -43,6 +42,26 @@ $(function () {
     var $ul = createUnorderedList(data);
     $('#avengers').append($ul);
     
+    $("<div/>")
+        .attr('id', 'test-div')
+        .addClass("hot")
+        .text("HELLLLLLLLLLLLLOOOOOOOOOOOOO")
+        .appendTo('main');
+        
+    var $ironMan = $('#iron-man');
     
+    function fadeIn($element, callback, args) {
+        $element.fadeIn(2000, function () {
+            callback.apply(null, args);
+        });
+    }
+    
+    function fadeOut($element, callback, args) {
+        $element.fadeOut(2000, function () {
+            callback.apply(null, args);
+        });
+    }
+    
+    fadeOut($ironMan, fadeIn, [$ironMan]);
     
 });
